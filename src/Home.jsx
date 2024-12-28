@@ -9,17 +9,18 @@ const Home = () => {
   const checkoutHandler = async (amount) => {
     const {
       data: { key },
-    } = await axios.get("http://localhost:4000/api/getkey");
-    // } = await axios.get("https://razorpay-server-kgew.onrender.com/api/getkey");
+      // } = await axios.get("http://localhost:4000/api/getkey");
+    } = await axios.get("https://razorpay-server-kgew.onrender.com/api/getkey");
 
     const {
       data: { order },
-    } = await axios.post("http://localhost:4000/api/checkout", {
-      // } = await axios.post(
-      //   "https://razorpay-server-kgew.onrender.com/api/checkout",
-      //   {
-      amount,
-    });
+      // } = await axios.post("http://localhost:4000/api/checkout", {
+    } = await axios.post(
+      "https://razorpay-server-kgew.onrender.com/api/checkout",
+      {
+        amount,
+      }
+    );
 
     const options = {
       key, // Enter the Key ID generated from the Dashboard
@@ -30,9 +31,9 @@ const Home = () => {
       image:
         "https://static.vecteezy.com/system/resources/previews/016/471/452/original/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg",
       order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:4000/api/paymentverification",
-      // callback_url:
-      //   "https://razorpay-server-kgew.onrender.com/api/paymentverification",
+      // callback_url: "http://localhost:4000/api/paymentverification",
+      callback_url:
+        "https://razorpay-server-kgew.onrender.com/api/paymentverification",
 
       //add login user details
       prefill: {
